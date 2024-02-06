@@ -1,4 +1,4 @@
-package com.example.bookreader
+package com.example.bookReader
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.bookreader.ui.theme.BookReaderTheme
+import com.example.bookReader.ui.theme.BookReaderTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

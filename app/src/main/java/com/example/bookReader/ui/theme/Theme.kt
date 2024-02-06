@@ -1,4 +1,4 @@
-package com.example.bookreader.ui.theme
+package com.example.bookReader.ui.theme
 
 import android.app.Activity
 import android.os.Build
