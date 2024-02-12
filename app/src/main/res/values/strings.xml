@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Book Reader</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+    <string name="next">Next</string>
+    <string name="bnt_submit">Submit\n</string>
 </resources>
