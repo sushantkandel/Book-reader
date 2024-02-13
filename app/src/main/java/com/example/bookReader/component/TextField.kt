@@ -39,7 +39,7 @@ import com.example.bookReader.R
  */
 
 
-@ExperimentalMaterial3Api
+
 @Composable
 fun AppTextField(
     modifier: Modifier = Modifier,
@@ -96,7 +96,7 @@ fun AppTextField(
  * @param imeAction The IME (Input Method Editor) action for the password field (default is ImeAction.Done).
  * @param onImeAction Callback function to be invoked when the IME action is performed (default is an empty function).
  */
-@ExperimentalMaterial3Api
+
 @Composable
 fun PasswordTextField(
     label: String,
@@ -173,7 +173,7 @@ fun PasswordTextField(
  * @param keyboardOptions The keyboard options for the text field (default is KeyboardOptions.Default with Text keyboardType).
  * @param trailingIcon A composable function representing the trailing icon of the text field.
  */
-@ExperimentalMaterial3Api
+
 @Composable
 fun AppTextFieldWithTrailing(
     modifier: Modifier = Modifier,

@@ -12,10 +12,6 @@ A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
-@
-build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
-C
-settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 m
@@ -35,8 +31,6 @@ j
 }
 Mapp/src/main/java/com/example/bookReader/screens/home/ReaderBookHomeScreen.kt,b/7/b7b0f01d82dd73cbab72b1bb91563efbfb40cfa0
 t
-Dapp/src/main/java/com/example/bookReader/component/TextFieldState.kt,9/f/9fc457c7006905ebecf0fd0554475d4dc38a8674
-t
 Dapp/src/main/java/com/example/bookReader/component/TextFieldError.kt,3/8/383e272c9fa9e86a907e3ef44110edd824302f1d
 s
 Capp/src/main/java/com/example/bookReader/navigation/ReaderScreen.kt,0/b/0bd98b28c9e3f54c4b74a8625b3221141ed2520f
@@ -46,5 +40,9 @@ r
 Bapp/src/main/java/com/example/bookReader/resources/PreviewUtils.kt,a/e/ae6a5c71ced109b3ec00203b095ab8a59d8bf5aa
 v
 Fapp/src/main/java/com/example/bookReader/screens/ReaderSplashScreen.kt,b/0/b0a41cc155742566f5aa35a6c762670600b4cd53
-D
-app/build.gradle.kts,d/2/d2a4383452aad84a18429a5844d31330a012a9e6
+C
+settings.gradle.kts,7/4/749edfcc96398253e5b3416184e95c46621da850
+@
+build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
+~
+Napp/src/main/java/com/example/bookReader/screens/login/LoginScreenValidator.kt,0/f/0ff86074d6103d0719ef71526426313acb13739c

@@ -272,7 +272,7 @@ private fun AppButtonContent(
 fun AppButtonPreview(modifier: Modifier = Modifier) {
     BookReaderTheme {
 
-        AppButton(label = stringResource(id = R.string.next), modifier = modifier, onClick = {})
+        AppButton(label = stringResource(id = R.string.login), modifier = modifier, onClick = {})
     }
 }
 
