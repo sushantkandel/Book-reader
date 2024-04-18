@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.bookReader.component.ReaderLogo
 import com.example.bookReader.navigation.ReaderScreen
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
-
 
 
 @Composable
@@ -46,7 +46,12 @@ fun ReaderSplashScreen(navController: NavController? = null) {
             )
         )
         delay(2000L)
-        navController?.navigate(ReaderScreen.LoginScreen.name)
+        if (FirebaseAuth.getInstance().currentUser?.email.isNullOrEmpty()) {
+            navController?.navigate(ReaderScreen.LoginScreen.name)
+        } else {
+            navController?.navigate(ReaderScreen.ReaderHomeScreen.name)
+        }
+
     }
 
     Column(
@@ -60,8 +65,9 @@ fun ReaderSplashScreen(navController: NavController? = null) {
         Surface(
             shape = CircleShape,
             border = BorderStroke(2.dp, Color.LightGray),
-            modifier = Modifier.size(280.dp)
-            .scale(scale.value),
+            modifier = Modifier
+                .size(280.dp)
+                .scale(scale.value),
             color = MaterialTheme.colorScheme.background
         ) {
             Column(

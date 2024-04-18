@@ -3,7 +3,10 @@
     <string name="hide_password">Hide password</string>
     <string name="show_password">Show password</string>
     <string name="login">Login</string>
+    <string name="create">Create Account</string>
     <string name="bnt_submit">Submit\n</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="account_create_info">Please enter valid email and password. Password Should be at least 6 character. </string>
+
 </resources>

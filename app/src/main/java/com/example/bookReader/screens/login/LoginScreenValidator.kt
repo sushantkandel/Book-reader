@@ -19,9 +19,9 @@ class EmailState(email: String? = null) :
  * Returns an error to be displayed or null if no error was found
  */
 private fun emailValidationError(email: String): String {
-    return if(email.isEmpty()){
+    return if (email.isEmpty()) {
         "Email should not be empty"
-    }else{
+    } else {
         "Please enter valid email"
     }
 
@@ -44,16 +44,15 @@ class PasswordState(password: String? = null) :
 }
 
 private fun passwordValidationError(password: String): String {
-    return if(password.isEmpty()){
+    return if (password.isEmpty()) {
         "Password should not be empty"
-    }else{
-        "Please enter valid password"
+    } else {
+        ""
     }
-
 }
 
 private fun isPasswordValid(password: String): Boolean {
-    return password.isEmpty()
+    return password.isNotEmpty()
 }
 
 val passwordStateSaver = textFieldStateSaver(PasswordState())

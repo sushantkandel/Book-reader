@@ -1,16 +1,22 @@
 package com.example.bookReader.screens.login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,9 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.bookReader.R
@@ -30,25 +36,39 @@ import com.example.bookReader.component.AppTextField
 import com.example.bookReader.component.PasswordTextField
 import com.example.bookReader.component.ReaderLogo
 import com.example.bookReader.component.TextFieldState
+import com.example.bookReader.navigation.ReaderScreen
+import com.example.bookReader.resources.ThemePreviews
 import com.example.bookReader.ui.theme.BookReaderTheme
 
 
 @Composable
-fun LoginScreen(navController: NavController?) {
+fun LoginScreen(
+    navController: NavController?,
+    loginScreenViewModel: LoginScreenViewModel = LoginScreenViewModel()
+) {
 
-    var buttonState by remember { mutableStateOf(false) }
+
+    val showLoginForm = remember { mutableStateOf(true) }
 
     val emailState by rememberSaveable(stateSaver = emailStateSaver) {
         mutableStateOf(EmailState())
     }
 
     val passwordState by rememberSaveable(stateSaver = passwordStateSaver) {
-        mutableStateOf(EmailState())
+        mutableStateOf(PasswordState())
     }
 
     val onSubmit = {
         if (emailState.isValid && passwordState.isValid) {
-
+            if (showLoginForm.value) {
+                loginScreenViewModel.signInWithEmailAndPassword(emailState.text,passwordState.text){
+                    navController?.navigate(ReaderScreen.ReaderHomeScreen.name)
+                }
+            } else {
+                loginScreenViewModel.createUserWithEmailAndPassword(emailState.text,passwordState.text){
+                    navController?.navigate(ReaderScreen.ReaderHomeScreen.name)
+                }
+            }
         }
     }
 
@@ -57,19 +77,42 @@ fun LoginScreen(navController: NavController?) {
         modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
             ReaderLogo()
             Spacer(modifier = Modifier.height(50.dp))
+            if (!showLoginForm.value) Text(text = stringResource(id = R.string.account_create_info))
             UserEmail(modifier = Modifier.fillMaxWidth(), emailState)
             Spacer(modifier = Modifier.height(16.dp))
             UserPassword(modifier = Modifier.fillMaxWidth(), passwordState, onSubmit)
+            Spacer(modifier = Modifier.height(15.dp))
+            Row(
+                Modifier.padding(15.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                val text = if (showLoginForm.value) "SignUp" else "Login"
+                Text(text = "New User?")
+                Text(text = text,
+                    modifier = Modifier
+                        .clickable { showLoginForm.value = !showLoginForm.value }
+                        .padding(5.dp),
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.secondary
+
+                )
+
+            }
+            Spacer(modifier = Modifier.height(26.dp))
             NextButton(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.fillMaxWidth(),
+                showLoginForm = showLoginForm,
                 enabled = emailState.isValid && passwordState.isValid,
-                onSubmit
+                onSubmit = onSubmit
             )
 
 
@@ -110,19 +153,21 @@ fun UserEmail(modifier: Modifier, emailState: TextFieldState) {
 
 @Composable
 fun NextButton(
-    modifier: Modifier = Modifier, enabled: Boolean, onSubmit: () -> Unit
+    modifier: Modifier = Modifier,
+    enabled: Boolean,
+    showLoginForm: MutableState<Boolean>,
+    onSubmit: () -> Unit
 ) {
 
     AppButton(
         onClick = onSubmit,
-        modifier = modifier
-            .fillMaxWidth(),
-        label = stringResource(id = R.string.login),
+        modifier = modifier.fillMaxWidth(),
+        label = if (showLoginForm.value) stringResource(id = R.string.login) else stringResource(id = R.string.create),
         enabled = enabled
     )
 }
 
-@Preview
+@ThemePreviews
 @Composable
 fun DefaultPreview() {
     BookReaderTheme {
